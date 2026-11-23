@@ -11,7 +11,14 @@ export const site = {
   premise: "Traer el mundo a Colombia. Llevar Colombia al mundo.",
 
   /**
-   * Muestra las notas "Pendiente de validación" en el sitio.
+   * Dirección pública del sitio. Cámbiala a https://unacolombia.com
+   * cuando el dominio apunte a este sitio.
+   */
+  url: "https://unacolombia.vercel.app",
+
+  /**
+   * Muestra las notas "Pendiente de validación" en el sitio y pide a los
+   * buscadores que no lo indexen todavía.
    * Poner en false al publicar, cuando el contenido esté aprobado.
    */
   showDraftNotes: true,

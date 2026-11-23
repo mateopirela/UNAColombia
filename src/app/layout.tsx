@@ -13,10 +13,24 @@ const montserrat = Montserrat({
 
 export const metadata: Metadata = {
   title: {
-    default: "UNA Colombia | Conectamos Colombia con el mundo",
+    default: "UNA Colombia | Conectar a Colombia con el mundo",
     template: "%s | UNA Colombia",
   },
   description: site.description,
+  metadataBase: new URL(site.url),
+  openGraph: {
+    type: "website",
+    locale: "es_CO",
+    siteName: site.name,
+    title: "UNA Colombia | Conectar a Colombia con el mundo",
+    description: site.description,
+    url: "/",
+  },
+  twitter: { card: "summary_large_image" },
+  // Mientras haya contenido por validar, el sitio no se indexa.
+  robots: site.showDraftNotes
+    ? { index: false, follow: false }
+    : { index: true, follow: true },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
