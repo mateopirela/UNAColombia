@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Container, CtaBand, PageHero } from "@/components/ui";
+import { Reveal } from "@/components/Reveal";
+import { ArrowIcon, Container, CtaBand, PageHero } from "@/components/ui";
 import { programs } from "@/lib/content";
 
 export const metadata: Metadata = {
@@ -18,30 +19,46 @@ export default function Page() {
         intro="Nuestras líneas de trabajo acercan los asuntos globales a jóvenes y ciudadanos, y convierten el conocimiento en participación."
       />
 
-      <section className="py-20">
-        <Container className="grid gap-6 md:grid-cols-2">
+      <section className="py-24">
+        <Container className="grid gap-5 md:grid-cols-2">
           {programs.map((p, i) => (
-            <article
-              key={p.slug}
-              className="flex flex-col rounded-2xl border border-line bg-white p-8"
-            >
-              <span className="font-serif text-3xl font-bold text-azul">
-                0{i + 1}
-              </span>
-              <h2 className="mt-3 text-3xl text-navy">{p.title}</h2>
-              <p className="mt-4 flex-1 text-muted">{p.summary}</p>
+            <Reveal key={p.slug} delay={i * 120} className="h-full">
               <Link
                 href={`/programas/${p.slug}`}
-                className="mt-7 inline-flex w-fit items-center gap-2 rounded-full bg-navy px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-navy-deep"
+                className={`group relative flex h-full min-h-[24rem] flex-col justify-between overflow-hidden rounded-[2rem] p-8 sm:p-10 ${
+                  i === 0
+                    ? "bg-deep grain text-white"
+                    : "bg-azul text-navy-deep"
+                }`}
               >
-                Conoce el programa <span aria-hidden>→</span>
+                <div className="flex items-start justify-between gap-6">
+                  <span className="font-serif text-5xl font-bold opacity-50">
+                    0{i + 1}
+                  </span>
+                  <span
+                    className={`flex h-12 w-12 items-center justify-center rounded-full transition-transform duration-300 group-hover:rotate-[-45deg] ${
+                      i === 0
+                        ? "bg-amarillo text-navy-deep"
+                        : "bg-navy-deep text-white"
+                    }`}
+                  >
+                    <ArrowIcon className="h-5 w-5" />
+                  </span>
+                </div>
+                <div>
+                  <h2 className="text-4xl sm:text-5xl">{p.title}</h2>
+                  <p className="mt-5 text-lg opacity-80">{p.summary}</p>
+                  <span className="mt-6 inline-block text-sm font-semibold underline decoration-2 underline-offset-4">
+                    Conoce el programa
+                  </span>
+                </div>
               </Link>
-            </article>
+            </Reveal>
           ))}
         </Container>
       </section>
 
-      <section className="border-y border-line bg-white py-20">
+      <section className="border-y border-line bg-white py-24">
         <Container className="grid gap-10 lg:grid-cols-[1.3fr_1fr] lg:items-center">
           <div>
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-azulco">

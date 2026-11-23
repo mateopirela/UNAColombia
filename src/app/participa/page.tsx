@@ -17,7 +17,7 @@ export default function Page() {
         intro="Conectar a Colombia con el mundo también es una tarea colectiva. Generamos oportunidades para que jóvenes, ciudadanos, organizaciones e instituciones se vinculen a iniciativas que promuevan el conocimiento, la colaboración y el desarrollo sostenible."
       />
 
-      <section className="py-20">
+      <section className="py-24">
         <Container className="space-y-6">
           {participation.map((p, i) => (
             <article

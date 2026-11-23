@@ -36,7 +36,7 @@ export default async function Page({
         intro={program.summary}
       />
 
-      <section className="py-20">
+      <section className="py-24">
         <Container className="grid gap-12 lg:grid-cols-[1.5fr_1fr]">
           <div className="space-y-5 text-lg text-muted">
             {program.body.map((p) => (

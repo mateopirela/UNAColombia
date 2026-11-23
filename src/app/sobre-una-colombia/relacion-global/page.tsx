@@ -29,7 +29,7 @@ export default function Page() {
       />
       <SubNav items={aboutNav} current="/sobre-una-colombia/relacion-global" />
 
-      <section className="py-20">
+      <section className="py-24">
         <Container className="grid gap-12 lg:grid-cols-[1.4fr_1fr]">
           <div>
             <SectionHeading
@@ -70,7 +70,7 @@ export default function Page() {
         </Container>
       </section>
 
-      <section className="border-y border-line bg-white py-20">
+      <section className="border-y border-line bg-white py-24">
         <Container className="grid gap-5 md:grid-cols-2">
           <Card className="bg-marfil">
             <h2 className="text-2xl text-navy">¿Qué es WFUNA?</h2>

@@ -2,54 +2,93 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { nav } from "@/lib/site";
 import { Wordmark } from "./ui";
 
 export function Header() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 24);
+    const first = requestAnimationFrame(onScroll);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => {
+      cancelAnimationFrame(first);
+      window.removeEventListener("scroll", onScroll);
+    };
+  }, []);
 
   const isActive = (href: string) =>
     pathname === href || pathname.startsWith(href + "/");
 
+  // Sobre el hero (azul) el encabezado es transparente con texto claro.
+  const solid = scrolled || open;
+
   return (
-    <header className="sticky top-0 z-40 border-b border-line bg-marfil/95 backdrop-blur">
-      <div className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between gap-6 px-5 sm:px-8">
+    <header
+      className={`fixed inset-x-0 top-0 z-40 transition-[background-color,border-color,box-shadow] duration-300 ${
+        solid
+          ? "border-b border-line bg-marfil/90 shadow-[0_8px_30px_-20px_rgba(6,33,61,0.5)] backdrop-blur-md"
+          : "border-b border-transparent bg-transparent"
+      }`}
+    >
+      <div className="mx-auto flex h-[4.5rem] w-full max-w-7xl items-center justify-between gap-6 px-5 sm:px-8">
         <Link href="/" aria-label="UNA Colombia, ir al inicio">
-          <Wordmark />
+          <Wordmark light={!solid} />
         </Link>
 
         <nav aria-label="Principal" className="hidden lg:block">
           <ul className="flex items-center gap-1">
-            {nav.map((item) => (
-              <li key={item.href}>
-                <Link
-                  href={item.href}
-                  aria-current={isActive(item.href) ? "page" : undefined}
-                  className={`rounded-full px-3.5 py-2 text-sm font-semibold transition-colors ${
-                    isActive(item.href)
-                      ? "bg-azul-soft text-navy"
-                      : "text-ink hover:bg-azul-soft/60"
-                  }`}
-                >
-                  {item.label}
-                </Link>
-              </li>
-            ))}
+            {nav.map((item) => {
+              const active = isActive(item.href);
+              return (
+                <li key={item.href}>
+                  <Link
+                    href={item.href}
+                    aria-current={active ? "page" : undefined}
+                    className={`relative whitespace-nowrap rounded-full px-3 py-2 text-sm font-semibold transition-colors xl:px-4 ${
+                      solid
+                        ? active
+                          ? "text-azulco"
+                          : "text-ink hover:text-azulco"
+                        : active
+                          ? "text-white"
+                          : "text-white/75 hover:text-white"
+                    }`}
+                  >
+                    {item.label}
+                    {active && (
+                      <span
+                        aria-hidden
+                        className="absolute inset-x-3 -bottom-0.5 h-0.5 rounded-full bg-amarillo xl:inset-x-4"
+                      />
+                    )}
+                  </Link>
+                </li>
+              );
+            })}
           </ul>
         </nav>
 
         <div className="flex items-center gap-2">
           <Link
             href="/contacto"
-            className="hidden rounded-full bg-navy px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-navy-deep sm:inline-flex"
+            className={`hidden rounded-full px-6 py-2.5 text-sm font-semibold transition-colors duration-300 sm:inline-flex ${
+              solid
+                ? "bg-navy text-white hover:bg-navy-deep"
+                : "bg-white text-navy hover:bg-amarillo"
+            }`}
           >
             Contacto
           </Link>
           <button
             type="button"
-            className="inline-flex h-10 w-10 items-center justify-center rounded-full text-navy hover:bg-azul-soft lg:hidden"
+            className={`inline-flex h-11 w-11 items-center justify-center rounded-full lg:hidden ${
+              solid ? "text-navy hover:bg-azul-soft" : "text-white hover:bg-white/10"
+            }`}
             aria-expanded={open}
             aria-controls="menu-movil"
             aria-label={open ? "Cerrar menú" : "Abrir menú"}
@@ -68,7 +107,7 @@ export function Header() {
               {open ? (
                 <path d="M6 6l12 12M18 6L6 18" />
               ) : (
-                <path d="M4 7h16M4 12h16M4 17h16" />
+                <path d="M4 8h16M4 16h16" />
               )}
             </svg>
           </button>
@@ -79,23 +118,32 @@ export function Header() {
         <nav
           id="menu-movil"
           aria-label="Principal"
-          className="border-t border-line bg-marfil lg:hidden"
+          className="h-[calc(100dvh-4.5rem)] overflow-y-auto border-t border-line bg-marfil lg:hidden"
         >
-          <ul className="mx-auto flex max-w-6xl flex-col px-5 py-3 sm:px-8">
-            {[...nav, { href: "/contacto", label: "Contacto" }].map((item) => (
-              <li key={item.href}>
-                <Link
-                  href={item.href}
-                  aria-current={isActive(item.href) ? "page" : undefined}
-                  onClick={() => setOpen(false)}
-                  className={`block rounded-xl px-3 py-3 text-base font-semibold ${
-                    isActive(item.href) ? "bg-azul-soft text-navy" : "text-ink"
-                  }`}
+          <ul className="mx-auto flex max-w-7xl flex-col px-5 py-6 sm:px-8">
+            {[...nav, { href: "/contacto", label: "Contacto" }].map(
+              (item, i) => (
+                <li
+                  key={item.href}
+                  className="hero-in border-b border-line"
+                  style={{ "--d": `${i * 50}ms` } as React.CSSProperties}
                 >
-                  {item.label}
-                </Link>
-              </li>
-            ))}
+                  <Link
+                    href={item.href}
+                    aria-current={isActive(item.href) ? "page" : undefined}
+                    onClick={() => setOpen(false)}
+                    className={`flex items-center justify-between py-5 font-serif text-3xl font-bold ${
+                      isActive(item.href) ? "text-azulco" : "text-navy"
+                    }`}
+                  >
+                    {item.label}
+                    <span aria-hidden className="text-xl text-azul">
+                      →
+                    </span>
+                  </Link>
+                </li>
+              ),
+            )}
           </ul>
         </nav>
       )}

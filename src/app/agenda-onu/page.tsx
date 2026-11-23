@@ -42,7 +42,7 @@ export default function Page() {
         intro="Las decisiones y los desafíos globales también tienen impacto en Colombia. Acercar la agenda de las Naciones Unidas a la ciudadanía ayuda a comprenderlos y a contribuir a su transformación."
       />
 
-      <section className="py-20">
+      <section className="py-24">
         <Container className="grid gap-12 lg:grid-cols-[1.2fr_1fr]">
           <div>
             <SectionHeading
@@ -82,7 +82,7 @@ export default function Page() {
         </Container>
       </section>
 
-      <section className="border-y border-line bg-white py-20">
+      <section className="border-y border-line bg-white py-24">
         <Container>
           <SectionHeading
             eyebrow="Agenda 2030"
@@ -112,7 +112,7 @@ export default function Page() {
         </Container>
       </section>
 
-      <section className="py-20">
+      <section className="py-24">
         <Container>
           <SectionHeading
             eyebrow="Temas"

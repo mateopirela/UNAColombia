@@ -26,7 +26,7 @@ export default function Page() {
       />
       <SubNav items={aboutNav} current="/sobre-una-colombia" />
 
-      <section className="py-20">
+      <section className="py-24">
         <Container className="grid gap-12 lg:grid-cols-[1.4fr_1fr]">
           <div>
             <SectionHeading eyebrow="Quiénes somos" title="Conectamos a Colombia con las Naciones Unidas y la comunidad internacional" />
@@ -55,7 +55,7 @@ export default function Page() {
         </Container>
       </section>
 
-      <section id="proposito" className="bg-navy py-20 text-white">
+      <section id="proposito" className="bg-navy py-24 text-white">
         <Container>
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-azul">
             Propósito
@@ -81,7 +81,7 @@ export default function Page() {
         </Container>
       </section>
 
-      <section className="py-20">
+      <section className="py-24">
         <Container className="grid gap-5 md:grid-cols-2">
           <Card>
             <h2 className="text-2xl text-navy">Misión</h2>
@@ -108,7 +108,7 @@ export default function Page() {
         </Container>
       </section>
 
-      <section id="historia" className="border-y border-line bg-white py-20">
+      <section id="historia" className="border-y border-line bg-white py-24">
         <Container className="grid gap-12 lg:grid-cols-[1fr_1.3fr]">
           <SectionHeading
             eyebrow="Nuestra historia"
@@ -132,7 +132,7 @@ export default function Page() {
         </Container>
       </section>
 
-      <section className="py-20">
+      <section className="py-24">
         <Container>
           <SectionHeading eyebrow="Cómo trabajamos" title="Cuatro pilares" />
           <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
@@ -149,7 +149,7 @@ export default function Page() {
         </Container>
       </section>
 
-      <section id="valores" className="bg-azul-soft/60 py-20">
+      <section id="valores" className="bg-azul-soft/60 py-24">
         <Container>
           <SectionHeading
             eyebrow="Nuestros valores"

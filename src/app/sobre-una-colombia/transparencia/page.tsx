@@ -56,7 +56,7 @@ export default function Page() {
       />
       <SubNav items={aboutNav} current="/sobre-una-colombia/transparencia" />
 
-      <section className="py-20">
+      <section className="py-24">
         <Container>
           <Pendiente>
             Confirmar el estado legal vigente y qué documentos se publicarán.

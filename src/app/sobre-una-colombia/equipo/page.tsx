@@ -39,7 +39,7 @@ export default function Page() {
       />
       <SubNav items={aboutNav} current="/sobre-una-colombia/equipo" />
 
-      <section className="py-20">
+      <section className="py-24">
         <Container className="space-y-14">
           <Pendiente>
             Los perfiles se publicarán cuando se confirme la estructura vigente

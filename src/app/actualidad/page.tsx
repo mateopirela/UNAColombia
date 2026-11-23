@@ -34,7 +34,7 @@ export default async function Page() {
         intro="Conoce las novedades, actividades y acontecimientos relacionados con UNA Colombia y los temas de nuestra agenda."
       />
 
-      <Container className="space-y-20 py-20">
+      <Container className="space-y-20 py-24">
         {hasExamples && (
           <Pendiente>
             Las publicaciones marcadas como «Ejemplo» son de relleno y deben

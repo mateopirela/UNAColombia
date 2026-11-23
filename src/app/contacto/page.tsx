@@ -28,7 +28,7 @@ export default function Page({ searchParams }: PageProps<"/contacto">) {
         intro="Cuéntanos quién eres y qué te interesa. Elige el asunto para que tu mensaje llegue a la persona indicada."
       />
 
-      <section className="py-20">
+      <section className="py-24">
         <Container className="grid gap-12 lg:grid-cols-[1.5fr_1fr]">
           <div className="rounded-2xl border border-line bg-white p-6 sm:p-9">
             <Suspense fallback={<ContactForm initialSubject="general" />}>

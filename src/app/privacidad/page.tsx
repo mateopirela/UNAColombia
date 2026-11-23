@@ -13,7 +13,7 @@ export default function Page() {
         crumbs={[{ label: "Tratamiento de datos" }]}
         title="Política de tratamiento de datos"
       />
-      <section className="py-20">
+      <section className="py-24">
         <Container className="max-w-3xl space-y-5 text-lg text-muted">
           <Pendiente>
             El texto legal de la política debe suministrarlo UNA Colombia antes
