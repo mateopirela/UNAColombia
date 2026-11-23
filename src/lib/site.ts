@@ -21,7 +21,9 @@ export const site = {
   /** Número de WhatsApp en formato internacional sin "+", p. ej. "573001234567". */
   whatsapp: "",
   /** Perfiles oficiales confirmados: { label: "Instagram", href: "https://…" } */
-  social: [] as { label: string; href: string }[],
+  social: [
+    { label: "Instagram", href: "https://www.instagram.com/unacolombia/" },
+  ] as { label: string; href: string }[],
 };
 
 export const nav = [

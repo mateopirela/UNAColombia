@@ -42,24 +42,24 @@ export const values = [
 
 export const howWeDoIt = [
   {
-    title: "Conectar a Colombia",
-    text: "Construimos puentes entre personas, organizaciones, instituciones, sectores y comunidades del país.",
+    title: "Conectamos a Colombia",
+    text: "construimos puentes entre personas, organizaciones, instituciones, sectores y comunidades del país.",
   },
   {
-    title: "Con las Naciones Unidas y el mundo",
-    text: "Acercamos las agendas y oportunidades internacionales a la realidad colombiana, y llevamos las voces y soluciones de Colombia a espacios internacionales.",
+    title: "Conectamos con las Naciones Unidas y el mundo",
+    text: "acercamos las agendas, conversaciones y oportunidades internacionales a la realidad colombiana, y facilitamos que las voces, experiencias, capacidades y soluciones de Colombia tengan participación y visibilidad internacional.",
   },
   {
-    title: "Transformar conocimiento, relaciones y oportunidades",
-    text: "La conexión debe servir para compartir conocimiento, articular capacidades y crear alianzas, no solo para generar contactos.",
+    title: "Transformamos conocimientos, relaciones y oportunidades",
+    text: "no nos limitamos a generar contactos. Convertimos la conexión en conocimiento compartido, capacidades articuladas, alianzas y oportunidades de colaboración.",
   },
   {
-    title: "En acción",
-    text: "Convertimos esas conexiones en iniciativas concretas, con objetivos y seguimiento.",
+    title: "Convertimos en acción",
+    text: "transformamos esas conexiones en iniciativas y acciones concretas, con objetivos y seguimiento.",
   },
   {
-    title: "Con impacto sostenible",
-    text: "Procuramos que las acciones fortalezcan capacidades y produzcan transformaciones que se mantengan en el tiempo.",
+    title: "Generamos impacto sostenible",
+    text: "procuramos que las acciones fortalezcan capacidades y produzcan relaciones y transformaciones que puedan mantenerse en el tiempo.",
   },
 ];
 

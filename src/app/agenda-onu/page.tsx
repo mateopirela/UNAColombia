@@ -1,35 +1,51 @@
 import type { Metadata } from "next";
-import {
-  Card,
-  Container,
-  CtaBand,
-  PageHero,
-  SectionHeading,
-} from "@/components/ui";
+import { Container, CtaBand, PageHero } from "@/components/ui";
 import { sdgs } from "@/lib/content";
 
 export const metadata: Metadata = {
   title: "Agenda ONU",
   description:
-    "Ciudadanía global, Objetivos de Desarrollo Sostenible y los asuntos internacionales que conectan a Colombia con el mundo.",
+    "La agenda de las Naciones Unidas en Colombia: prioridades, Objetivos de Desarrollo Sostenible y fuentes oficiales.",
 };
 
-const themes = [
+const priorities = [
   {
-    title: "Desarrollo sostenible",
-    text: "Crecer sin comprometer a las generaciones futuras: economía, sociedad y ambiente en equilibrio.",
+    title: "Paz y justicia social",
+    text: "Promover la construcción de paz, los derechos humanos y el bienestar de las comunidades.",
   },
   {
-    title: "Paz",
-    text: "Prevenir conflictos, construir convivencia y fortalecer el diálogo entre comunidades y naciones.",
+    title: "Seguridad alimentaria y desarrollo rural",
+    text: "Impulsar el acceso a alimentos, agua y oportunidades para las comunidades rurales.",
   },
   {
-    title: "Derechos humanos",
-    text: "La dignidad y los derechos que pertenecen a todas las personas, sin distinción.",
+    title: "Inclusión y protección social",
+    text: "Reducir desigualdades y fortalecer la protección de las poblaciones más vulnerables.",
   },
   {
-    title: "Inclusión",
-    text: "Que nadie se quede atrás: participación plena de todas las personas y comunidades.",
+    title: "Medio ambiente y acción climática",
+    text: "Proteger los recursos naturales, la biodiversidad y promover un desarrollo ambientalmente sostenible.",
+  },
+  {
+    title: "Alianzas para el desarrollo sostenible",
+    text: "Fortalecer la cooperación y las capacidades necesarias para avanzar en los Objetivos de Desarrollo Sostenible.",
+  },
+];
+
+const sources = [
+  {
+    title: "Noticias ONU",
+    text: "Actualidad y acontecimientos de Naciones Unidas en el mundo.",
+    href: "https://news.un.org/es/",
+  },
+  {
+    title: "Objetivos de Desarrollo Sostenible en Colombia",
+    text: "Conoce los 17 objetivos y su aplicación en el país.",
+    href: "https://colombia.un.org/es/sdgs",
+  },
+  {
+    title: "Naciones Unidas en Colombia",
+    text: "Programas, iniciativas y noticias sobre el trabajo de la ONU en Colombia.",
+    href: "https://colombia.un.org/es",
   },
 ];
 
@@ -39,93 +55,80 @@ export default function Page() {
       <PageHero
         crumbs={[{ label: "Agenda ONU" }]}
         title="Agenda ONU"
-        intro="Las decisiones y los desafíos globales también tienen impacto en Colombia. Acercar la agenda de las Naciones Unidas a la ciudadanía ayuda a comprenderlos y a contribuir a su transformación."
+        intro="Las decisiones y los desafíos globales también tienen impacto en Colombia. Desde UNA Colombia buscamos acercar la agenda de las Naciones Unidas a la ciudadanía, promoviendo el conocimiento de los principales temas internacionales y su relación con nuestra realidad nacional."
       />
 
       <section className="py-16">
-        <Container className="grid gap-12 lg:grid-cols-[1.2fr_1fr]">
-          <div>
-            <SectionHeading
-              eyebrow="Lo esencial"
-              title="¿Qué son las Naciones Unidas?"
-            />
-            <div className="mt-8 space-y-5 text-lg text-muted">
-              <p>
-                La Organización de las Naciones Unidas se fundó en 1945, tras
-                la Segunda Guerra Mundial, para mantener la paz y la seguridad
-                internacionales, fomentar la cooperación entre países y
-                promover los derechos humanos.
-              </p>
-              <p>
-                Hoy la integran 193 Estados miembros. Colombia es uno de sus
-                miembros fundadores.
-              </p>
-            </div>
-            <a
-              href="https://www.un.org/es/about-us"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-6 inline-block text-sm font-semibold text-azulco hover:underline"
-            >
-              Más información en un.org
-            </a>
-          </div>
-          <div className="rounded-lg bg-navy p-8 text-white">
-            <h2 className="text-2xl">Ciudadanía global</h2>
-            <p className="mt-4 text-white/85">
-              Ser ciudadano global es reconocer que lo que ocurre en el mundo
-              nos afecta y que lo que hacemos en nuestra comunidad también
-              cuenta. Significa informarse, dialogar y participar en los
-              asuntos que conectan a Colombia con el mundo.
-            </p>
-          </div>
+        <Container>
+          <h2 className="text-3xl text-navy">
+            La agenda de Naciones Unidas en Colombia
+          </h2>
+          <p className="mt-6 max-w-3xl text-lg text-muted">
+            Las Naciones Unidas y el Gobierno de Colombia trabajan
+            conjuntamente en prioridades orientadas al desarrollo sostenible
+            del país, entre ellas:
+          </p>
+          <ul className="mt-8 max-w-3xl space-y-4 text-lg text-muted">
+            {priorities.map((p) => (
+              <li key={p.title}>
+                <strong className="font-semibold text-navy">{p.title}:</strong>{" "}
+                {p.text.charAt(0).toLowerCase() + p.text.slice(1)}
+              </li>
+            ))}
+          </ul>
         </Container>
       </section>
 
       <section className="border-y border-line bg-white py-16">
         <Container>
-          <SectionHeading
-            eyebrow="Agenda 2030"
-            title="Los 17 Objetivos de Desarrollo Sostenible"
-            intro="En 2015, los Estados miembros de la ONU adoptaron la Agenda 2030: un plan común con 17 objetivos para las personas, el planeta y la prosperidad."
-          />
-          <ol className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-            {sdgs.map(([name, color], i) => (
-              <li key={name}>
+          <h2 className="text-3xl text-navy">
+            Explora la agenda de Naciones Unidas
+          </h2>
+          <p className="mt-6 max-w-3xl text-lg text-muted">
+            Consulta las noticias, iniciativas y prioridades de Naciones Unidas
+            y conoce cómo se relacionan con Colombia.
+          </p>
+          <ul className="mt-10 grid gap-8 md:grid-cols-3">
+            {sources.map((s) => (
+              <li key={s.href} className="border-t-2 border-navy pt-5">
+                <h3 className="text-xl text-navy">{s.title}</h3>
+                <p className="mt-2 text-muted">{s.text}</p>
                 <a
-                  href={`https://www.un.org/sustainabledevelopment/es/objetivos-de-desarrollo-sostenible/`}
+                  href={s.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-4 rounded-md border border-line bg-marfil p-3 transition-colors hover:bg-white"
+                  className="mt-4 inline-block text-sm font-semibold text-azulco underline decoration-1 underline-offset-4 hover:text-navy"
                 >
-                  <span
-                    className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg font-serif text-lg font-bold text-white"
-                    style={{ backgroundColor: color }}
-                  >
-                    {i + 1}
-                  </span>
-                  <span className="text-sm font-semibold text-ink">{name}</span>
+                  Consultar sitio oficial
+                  <span className="sr-only"> de {s.title}</span>
                 </a>
               </li>
             ))}
-          </ol>
+          </ul>
         </Container>
       </section>
 
-      <section className="py-16">
+      <section id="ods" className="py-16">
         <Container>
-          <SectionHeading
-            eyebrow="Temas"
-            title="Los asuntos que orientan nuestro trabajo"
-          />
-          <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-            {themes.map((t) => (
-              <Card key={t.title}>
-                <h3 className="text-xl text-navy">{t.title}</h3>
-                <p className="mt-3 text-sm text-muted">{t.text}</p>
-              </Card>
+          <h2 className="text-3xl text-navy">
+            Los 17 Objetivos de Desarrollo Sostenible
+          </h2>
+          <ol className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {sdgs.map(([name, color], i) => (
+              <li
+                key={name}
+                className="flex items-center gap-4 rounded-md border border-line bg-white p-3"
+              >
+                <span
+                  className="flex h-10 w-10 shrink-0 items-center justify-center rounded-sm font-serif text-lg font-semibold text-white"
+                  style={{ backgroundColor: color }}
+                >
+                  {i + 1}
+                </span>
+                <span className="text-sm font-medium text-ink">{name}</span>
+              </li>
             ))}
-          </div>
+          </ol>
         </Container>
       </section>
 

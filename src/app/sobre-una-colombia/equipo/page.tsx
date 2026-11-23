@@ -1,30 +1,13 @@
 import type { Metadata } from "next";
-import {
-  Container,
-  PageHero,
-  Pendiente,
-  SectionHeading,
-  SubNav,
-} from "@/components/ui";
+import { Container, PageHero, Pendiente, SubNav } from "@/components/ui";
 import { aboutNav } from "@/lib/site";
+import { team } from "@/lib/team";
 
 export const metadata: Metadata = {
   title: "Nuestro equipo",
-  description: "Las personas que conforman UNA Colombia.",
+  description:
+    "El equipo que lidera y hace posible el trabajo de UNA Colombia.",
 };
-
-type Member = { name: string; role: string; bio?: string; linkedin?: string };
-
-/**
- * Añade aquí los perfiles cuando la estructura esté confirmada
- * y cada persona haya autorizado su publicación.
- */
-const groups: { title: string; members: Member[] }[] = [
-  { title: "Dirección institucional", members: [] },
-  { title: "Equipo directivo", members: [] },
-  { title: "Equipo de trabajo", members: [] },
-  { title: "Junta directiva", members: [] },
-];
 
 export default function Page() {
   return (
@@ -35,54 +18,33 @@ export default function Page() {
           { label: "Nuestro equipo" },
         ]}
         title="Nuestro equipo"
-        intro="Las personas que conforman UNA Colombia y sus responsabilidades dentro de la organización."
+        intro="Conoce al equipo que lidera y hace posible el trabajo de UNA Colombia: secretaría general, vicepresidencias, direcciones, apoyos y asesorías."
       />
       <SubNav items={aboutNav} current="/sobre-una-colombia/equipo" />
 
       <section className="py-16">
-        <Container className="space-y-14">
+        <Container>
           <Pendiente>
-            Los perfiles se publicarán cuando se confirme la estructura vigente
-            y cada persona autorice su nombre, cargo, fotografía y biografía.
+            Faltan las fotografías del equipo y las biografías de quienes aún
+            no la tienen.
           </Pendiente>
 
-          {groups.map((g) => (
-            <div key={g.title}>
-              <SectionHeading title={g.title} />
-              {g.members.length === 0 ? (
-                <p className="mt-8 rounded-lg border border-line bg-white p-7 text-muted">
-                  Próximamente.
-                </p>
-              ) : (
-                <ul className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-                  {g.members.map((m) => (
-                    <li
-                      key={m.name}
-                      className="rounded-lg border border-line bg-white p-6"
-                    >
-                      <h3 className="text-xl text-navy">{m.name}</h3>
-                      <p className="mt-1 text-sm font-semibold text-azulco">
-                        {m.role}
-                      </p>
-                      {m.bio && (
-                        <p className="mt-3 text-sm text-muted">{m.bio}</p>
-                      )}
-                      {m.linkedin && (
-                        <a
-                          href={m.linkedin}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="mt-4 inline-block text-sm font-semibold text-azulco hover:underline"
-                        >
-                          LinkedIn
-                        </a>
-                      )}
-                    </li>
-                  ))}
-                </ul>
-              )}
-            </div>
-          ))}
+          <ul className="mt-10 grid gap-x-10 gap-y-10 md:grid-cols-2">
+            {team.map((m) => (
+              <li key={m.name} className="border-t-2 border-navy pt-5">
+                <h2 className="text-2xl text-navy">{m.name}</h2>
+                <p className="mt-1 font-semibold text-azulco">{m.role}</p>
+                {m.bio && (
+                  <details className="mt-3 text-muted">
+                    <summary className="cursor-pointer text-sm font-semibold text-ink underline decoration-1 underline-offset-4">
+                      Biografía
+                    </summary>
+                    <p className="mt-3 text-sm leading-relaxed">{m.bio}</p>
+                  </details>
+                )}
+              </li>
+            ))}
+          </ul>
         </Container>
       </section>
     </>
