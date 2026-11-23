@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect width="64" height="64" rx="14" fill="#0a3a6b"/>
+  <text x="32" y="41" text-anchor="middle" font-family="Georgia, serif" font-weight="700" font-size="24" fill="#fff">UNA</text>
+  <rect x="14" y="48" width="12" height="4" fill="#fbd200"/>
+  <rect x="26" y="48" width="12" height="4" fill="#0057b8"/>
+  <rect x="38" y="48" width="12" height="4" fill="#d62828"/>
+</svg>
