@@ -36,7 +36,7 @@ export default async function Page({
         intro={program.summary}
       />
 
-      <section className="py-24">
+      <section className="py-16">
         <Container className="grid gap-12 lg:grid-cols-[1.5fr_1fr]">
           <div className="space-y-5 text-lg text-muted">
             {program.body.map((p) => (
@@ -52,7 +52,7 @@ export default async function Page({
                   {program.skills.map((s) => (
                     <li
                       key={s}
-                      className="rounded-full bg-azul-soft px-4 py-2 text-sm font-semibold text-navy"
+                      className="rounded-sm bg-azul-soft px-3 py-1.5 text-sm font-medium text-navy"
                     >
                       {s}
                     </li>
@@ -69,7 +69,7 @@ export default async function Page({
             </div>
           </div>
 
-          <aside className="self-start rounded-2xl border border-line bg-white p-7">
+          <aside className="self-start rounded-lg border border-line bg-white p-7">
             <h2 className="text-xl text-navy">¿Te interesa este programa?</h2>
             <p className="mt-3 text-sm text-muted">
               Escríbenos y te contamos cómo participar o cómo llevarlo a tu

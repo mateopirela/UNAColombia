@@ -7,7 +7,7 @@ export default function NotFound() {
       title="No encontramos esta página"
       intro="Puede que el enlace haya cambiado o que la página ya no exista."
     >
-      <ButtonLink href="/" variant="yellow" arrow className="mt-10">
+      <ButtonLink href="/" variant="light" className="mt-10">
         Volver al inicio
       </ButtonLink>
     </PageHero>

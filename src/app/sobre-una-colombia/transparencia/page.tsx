@@ -56,7 +56,7 @@ export default function Page() {
       />
       <SubNav items={aboutNav} current="/sobre-una-colombia/transparencia" />
 
-      <section className="py-24">
+      <section className="py-16">
         <Container>
           <Pendiente>
             Confirmar el estado legal vigente y qué documentos se publicarán.
@@ -67,7 +67,7 @@ export default function Page() {
             {sections.map((s) => (
               <div key={s.title}>
                 <SectionHeading title={s.title} intro={s.text} />
-                <ul className="mt-6 divide-y divide-line rounded-2xl border border-line bg-white">
+                <ul className="mt-6 divide-y divide-line rounded-lg border border-line bg-white">
                   {s.docs.map((d) => (
                     <li
                       key={d.label}
@@ -81,7 +81,7 @@ export default function Page() {
                           rel="noopener noreferrer"
                           className="shrink-0 text-sm font-semibold text-azulco hover:underline"
                         >
-                          Ver documento →
+                          Ver documento
                         </a>
                       ) : (
                         <span className="shrink-0 text-sm text-muted">

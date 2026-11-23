@@ -26,7 +26,7 @@ export default function Page() {
       />
       <SubNav items={aboutNav} current="/sobre-una-colombia" />
 
-      <section className="py-24">
+      <section className="py-16">
         <Container className="grid gap-12 lg:grid-cols-[1.4fr_1fr]">
           <div>
             <SectionHeading eyebrow="Quiénes somos" title="Conectamos a Colombia con las Naciones Unidas y la comunidad internacional" />
@@ -46,8 +46,8 @@ export default function Page() {
               </p>
             </div>
           </div>
-          <aside className="self-start rounded-2xl border-l-4 border-azulco bg-white p-7">
-            <h2 className="font-sans text-xs font-semibold uppercase tracking-[0.2em] text-azulco">
+          <aside className="self-start rounded-lg border-l-4 border-azulco bg-white p-7">
+            <h2 className="font-sans text-sm font-semibold text-navy">
               Nuestra relación con la ONU
             </h2>
             <p className="mt-3 text-ink">{independenceNotice}</p>
@@ -55,9 +55,9 @@ export default function Page() {
         </Container>
       </section>
 
-      <section id="proposito" className="bg-navy py-24 text-white">
+      <section id="proposito" className="bg-navy py-16 text-white">
         <Container>
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-azul">
+          <p className="text-sm font-semibold text-azul">
             Propósito
           </p>
           <p className="mt-5 max-w-4xl font-serif text-3xl font-bold leading-snug sm:text-4xl">
@@ -81,7 +81,7 @@ export default function Page() {
         </Container>
       </section>
 
-      <section className="py-24">
+      <section className="py-16">
         <Container className="grid gap-5 md:grid-cols-2">
           <Card>
             <h2 className="text-2xl text-navy">Misión</h2>
@@ -108,7 +108,7 @@ export default function Page() {
         </Container>
       </section>
 
-      <section id="historia" className="border-y border-line bg-white py-24">
+      <section id="historia" className="border-y border-line bg-white py-16">
         <Container className="grid gap-12 lg:grid-cols-[1fr_1.3fr]">
           <SectionHeading
             eyebrow="Nuestra historia"
@@ -132,16 +132,13 @@ export default function Page() {
         </Container>
       </section>
 
-      <section className="py-24">
+      <section className="py-16">
         <Container>
           <SectionHeading eyebrow="Cómo trabajamos" title="Cuatro pilares" />
           <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-            {pillars.map((p, i) => (
+            {pillars.map((p) => (
               <Card key={p.title}>
-                <span className="font-serif text-3xl font-bold text-azul">
-                  0{i + 1}
-                </span>
-                <h3 className="mt-3 text-xl text-navy">{p.title}</h3>
+                <h3 className="text-xl text-navy">{p.title}</h3>
                 <p className="mt-3 text-sm text-muted">{p.text}</p>
               </Card>
             ))}
@@ -149,7 +146,7 @@ export default function Page() {
         </Container>
       </section>
 
-      <section id="valores" className="bg-azul-soft/60 py-24">
+      <section id="valores" className="bg-azul-soft/60 py-16">
         <Container>
           <SectionHeading
             eyebrow="Nuestros valores"

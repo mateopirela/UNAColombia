@@ -28,9 +28,9 @@ export default function Page({ searchParams }: PageProps<"/contacto">) {
         intro="Cuéntanos quién eres y qué te interesa. Elige el asunto para que tu mensaje llegue a la persona indicada."
       />
 
-      <section className="py-24">
+      <section className="py-16">
         <Container className="grid gap-12 lg:grid-cols-[1.5fr_1fr]">
-          <div className="rounded-2xl border border-line bg-white p-6 sm:p-9">
+          <div className="rounded-lg border border-line bg-white p-6 sm:p-9">
             <Suspense fallback={<ContactForm initialSubject="general" />}>
               <FormWithSubject searchParams={searchParams} />
             </Suspense>
@@ -38,7 +38,7 @@ export default function Page({ searchParams }: PageProps<"/contacto">) {
 
           <aside className="space-y-6 self-start">
             {(site.contactEmail || site.whatsapp || site.social.length > 0) && (
-              <div className="rounded-2xl border border-line bg-white p-7">
+              <div className="rounded-lg border border-line bg-white p-7">
                 <h2 className="text-xl text-navy">Otros canales</h2>
                 <ul className="mt-4 space-y-2 text-sm">
                   {site.contactEmail && (
@@ -79,8 +79,8 @@ export default function Page({ searchParams }: PageProps<"/contacto">) {
               </div>
             )}
 
-            <div className="rounded-2xl border-l-4 border-azulco bg-white p-7">
-              <h2 className="font-sans text-xs font-semibold uppercase tracking-[0.2em] text-azulco">
+            <div className="rounded-lg border-l-4 border-azulco bg-white p-7">
+              <h2 className="font-sans text-sm font-semibold text-navy">
                 ¿Buscas a la ONU?
               </h2>
               <p className="mt-3 text-sm text-ink">{independenceNotice}</p>

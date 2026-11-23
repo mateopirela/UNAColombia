@@ -39,7 +39,7 @@ export default function Page() {
       />
       <SubNav items={aboutNav} current="/sobre-una-colombia/equipo" />
 
-      <section className="py-24">
+      <section className="py-16">
         <Container className="space-y-14">
           <Pendiente>
             Los perfiles se publicarán cuando se confirme la estructura vigente
@@ -50,7 +50,7 @@ export default function Page() {
             <div key={g.title}>
               <SectionHeading title={g.title} />
               {g.members.length === 0 ? (
-                <p className="mt-8 rounded-2xl border border-line bg-white p-7 text-muted">
+                <p className="mt-8 rounded-lg border border-line bg-white p-7 text-muted">
                   Próximamente.
                 </p>
               ) : (
@@ -58,7 +58,7 @@ export default function Page() {
                   {g.members.map((m) => (
                     <li
                       key={m.name}
-                      className="rounded-2xl border border-line bg-white p-6"
+                      className="rounded-lg border border-line bg-white p-6"
                     >
                       <h3 className="text-xl text-navy">{m.name}</h3>
                       <p className="mt-1 text-sm font-semibold text-azulco">
@@ -74,7 +74,7 @@ export default function Page() {
                           rel="noopener noreferrer"
                           className="mt-4 inline-block text-sm font-semibold text-azulco hover:underline"
                         >
-                          LinkedIn →
+                          LinkedIn
                         </a>
                       )}
                     </li>

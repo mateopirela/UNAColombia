@@ -1,482 +1,270 @@
-import Link from "next/link";
-import { Globe } from "@/components/Globe";
+import Image from "next/image";
+import type { ReactNode } from "react";
 import { PostCard } from "@/components/PostCard";
-import { Reveal } from "@/components/Reveal";
+import { ProgramCard } from "@/components/ProgramCard";
 import {
-  Arcs,
-  ArrowIcon,
   ButtonLink,
   Container,
-  Eyebrow,
-  Marquee,
-  SectionHeading,
+  TextLink,
   Tricolor,
 } from "@/components/ui";
-import { pillars, programs, sdgs, sortedPosts, timeline } from "@/lib/content";
-import { site } from "@/lib/site";
+import { pillars, programs, sdgs, sortedPosts } from "@/lib/content";
+import { photos, programPhotos } from "@/lib/photos";
 
-const themes = [
-  "Paz",
-  "Derechos humanos",
-  "Desarrollo sostenible",
-  "Inclusión",
-  "Ciudadanía global",
-  "Liderazgo juvenil",
-  "Cooperación internacional",
+/** Fila de la portada: título a la izquierda, contenido a la derecha. */
+function Row({
+  title,
+  children,
+  tone = "white",
+}: {
+  title: string;
+  children: ReactNode;
+  tone?: "white" | "marfil" | "navy";
+}) {
+  const bg = {
+    white: "bg-white border-b border-line",
+    marfil: "bg-marfil border-b border-line",
+    navy: "bg-navy text-white",
+  }[tone];
+  return (
+    <section className={bg}>
+      <Container className="grid gap-x-10 gap-y-6 py-12 lg:grid-cols-[15rem_1fr] lg:py-14">
+        <h2
+          className={`text-[1.7rem] ${tone === "navy" ? "text-white" : "text-navy"}`}
+        >
+          {title}
+        </h2>
+        <div>{children}</div>
+      </Container>
+    </section>
+  );
+}
+
+const pillarIcons: ReactNode[] = [
+  // Conexión
+  <path
+    key="a"
+    d="M9.5 14.5l5-5M8 11l-2 2a3.5 3.5 0 005 5l2-2M16 13l2-2a3.5 3.5 0 00-5-5l-2 2"
+  />,
+  // Educación
+  <path
+    key="b"
+    d="M3 9l9-4 9 4-9 4-9-4zm4 2.5V16c1.5 1.3 3.2 2 5 2s3.5-.7 5-2v-4.5M21 9v5"
+  />,
+  // Proyectos
+  <path
+    key="c"
+    d="M12 20v-8m0 0c0-3 2-5 6-5 0 3-2 5-6 5zm0 2c0-2.5-1.8-4-5-4 0 2.5 1.8 4 5 4zM7 20h10"
+  />,
+  // Colombia en el mundo
+  <path
+    key="d"
+    d="M12 3a9 9 0 100 18 9 9 0 000-18zm-9 9h18M12 3c2.5 2.5 3.8 5.5 3.8 9s-1.3 6.5-3.8 9c-2.5-2.5-3.8-5.5-3.8-9S9.5 5.5 12 3z"
+  />,
 ];
-
-const audiences = [
-  {
-    who: "Soy joven o estudiante",
-    what: "Quiero formarme, debatir y liderar.",
-    subject: "juventud",
-  },
-  {
-    who: "Represento un colegio o universidad",
-    what: "Quiero llevar un Modelo ONU a mi institución.",
-    subject: "modelo-onu",
-  },
-  {
-    who: "Represento una organización o empresa",
-    what: "Quiero construir una alianza o iniciativa.",
-    subject: "alianzas",
-  },
-  {
-    who: "Quiero ser voluntario",
-    what: "Quiero aportar mi tiempo y experiencia.",
-    subject: "voluntariado",
-  },
-];
-
-const d = (ms: number) => ({ "--d": `${ms}ms` }) as React.CSSProperties;
 
 export default function Home() {
   const latest = sortedPosts().slice(0, 3);
-  const [mun, youth] = programs;
 
   return (
     <>
-      {/* ——— Hero ——— */}
-      <section className="bg-deep grain relative overflow-hidden text-white">
-        <Container className="relative grid min-h-[100svh] items-center gap-6 pb-16 pt-32 lg:grid-cols-[1.05fr_1fr] lg:pb-24">
-          <div className="relative z-10">
-            <div className="hero-in">
-              <Eyebrow light>{site.legalName}</Eyebrow>
-            </div>
-            <h1
-              className="hero-in mt-7 text-[3.2rem] leading-[0.98] sm:text-7xl xl:text-[5.6rem]"
-              style={d(100)}
-            >
-              Conectamos Colombia con el{" "}
-              <span className="relative inline-block italic text-amarillo">
-                mundo
-                <svg
-                  aria-hidden
-                  viewBox="0 0 300 20"
-                  preserveAspectRatio="none"
-                  className="absolute -bottom-2 left-0 h-3 w-full"
-                >
-                  <path
-                    d="M2 14 C 70 2, 150 2, 298 10"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="3"
-                    strokeLinecap="round"
-                  />
-                </svg>
-              </span>
+      {/* Hero */}
+      <section className="overflow-hidden bg-black lg:bg-[linear-gradient(90deg,#06213d_0%,#000_40%)] text-white">
+        <Container className="grid items-center gap-8 lg:grid-cols-[1.1fr_1fr]">
+          <div className="py-16 lg:py-24">
+            <h1 className="text-[2.6rem] leading-[1.08] sm:text-[3.4rem] lg:whitespace-nowrap">
+              Conectar a Colombia
+              <br />
+              <em>con el mundo</em>
             </h1>
-            <p
-              className="hero-in mt-9 max-w-xl text-lg text-white/80 sm:text-xl"
-              style={d(220)}
-            >
-              Construimos puentes entre Colombia, las Naciones Unidas y la
-              comunidad internacional para convertir conocimiento, relaciones y
-              oportunidades en acción con impacto sostenible.
+            <Tricolor className="mt-7" />
+            <p className="mt-7 max-w-lg text-lg text-white/85">
+              Articulamos personas, organizaciones y sectores para transformar
+              conocimiento, alianzas y oportunidades en acciones de impacto
+              sostenible.
             </p>
-            <div className="hero-in mt-10 flex flex-wrap gap-3" style={d(340)}>
-              <ButtonLink href="/participa" variant="yellow" arrow>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <ButtonLink href="/sobre-una-colombia" variant="light">
+                Conoce nuestra organización
+              </ButtonLink>
+              <ButtonLink href="/participa" variant="ghostLight">
                 Participa
               </ButtonLink>
-              <ButtonLink href="/programas" variant="ghostLight">
-                Conoce los programas
-              </ButtonLink>
             </div>
-
-            <dl
-              className="hero-in mt-14 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-white/70"
-              style={d(460)}
-            >
-              <dt className="flex items-center gap-2.5 font-semibold text-white">
-                <span className="relative flex h-2.5 w-2.5">
-                  <span className="pulse-ring absolute inset-0 rounded-full bg-amarillo" />
-                  <span className="relative h-2.5 w-2.5 rounded-full bg-amarillo" />
-                </span>
-                Bogotá
-              </dt>
-              <dd className="flex flex-wrap items-center gap-x-3">
-                <span aria-hidden>→</span>
-                <span>Nueva York</span>
-                <span aria-hidden>·</span>
-                <span>Ginebra</span>
-                <span aria-hidden>·</span>
-                <span>Viena</span>
-                <span aria-hidden>·</span>
-                <span>Nairobi</span>
-              </dd>
-            </dl>
           </div>
-
-          <div
-            className="hero-in pointer-events-auto relative -mx-16 -mb-40 sm:-mx-10 lg:-mr-40 lg:mb-0 lg:ml-0"
-            style={d(200)}
-          >
-            <div
-              aria-hidden
-              className="absolute inset-[12%] rounded-full bg-azul/25 blur-3xl"
+          <div className="relative -mt-10 h-72 sm:h-96 lg:mt-0 lg:h-full lg:min-h-[32rem]">
+            <Image
+              src={photos.tierraDeNoche.src}
+              alt={photos.tierraDeNoche.alt}
+              preload
+              sizes="(max-width: 1024px) 100vw, 50vw"
+              className="absolute left-1/2 top-1/2 h-[150%] w-auto max-w-none -translate-x-1/2 -translate-y-1/2 object-contain lg:left-[58%] lg:h-[125%]"
             />
-            <Globe className="relative" />
           </div>
         </Container>
       </section>
 
-      <Marquee items={themes} />
+      {/* Sobre */}
+      <section className="bg-navy text-white">
+        <Container className="grid items-center gap-x-10 gap-y-8 py-12 lg:grid-cols-[15rem_1fr_22rem] lg:py-14">
+          <h2 className="text-[1.7rem]">Sobre UNA Colombia</h2>
+          <div>
+            <p className="text-white/85">
+              Somos una organización de la sociedad civil que conecta a
+              Colombia con las Naciones Unidas y la comunidad internacional,
+              promoviendo la cooperación, la participación y el desarrollo
+              sostenible.
+            </p>
+            <TextLink href="/sobre-una-colombia" light className="mt-5 inline-block">
+              Conoce más sobre la organización
+            </TextLink>
+          </div>
+          <Image
+            src={photos.bogota.src}
+            alt={photos.bogota.alt}
+            placeholder="blur"
+            sizes="(max-width: 1024px) 100vw, 22rem"
+            className="aspect-[16/9] w-full rounded-md object-cover"
+          />
+        </Container>
+      </section>
 
-      {/* ——— Premisa ——— */}
-      <section className="relative overflow-hidden bg-white py-24 sm:py-32">
-        <Container>
-          <Reveal>
-            <Eyebrow>Nuestra premisa</Eyebrow>
-          </Reveal>
-          <div className="mt-12 grid items-center gap-10 lg:grid-cols-[1fr_auto_1fr]">
-            <Reveal>
-              <p className="font-serif text-5xl font-bold leading-[1.02] tracking-tight text-navy sm:text-6xl">
-                Traer el mundo
-                <br />
-                <span className="italic text-azulco">a Colombia</span>
-              </p>
-              <p className="mt-6 max-w-md text-lg text-muted">
-                Acercamos las agendas, conversaciones y oportunidades
-                internacionales a la realidad del país.
-              </p>
-            </Reveal>
+      {/* Conexión global */}
+      <section className="border-b border-line bg-white">
+        <Container className="grid items-center gap-x-10 gap-y-8 py-12 lg:grid-cols-[15rem_1fr_22rem] lg:py-14">
+          <h2 className="text-[1.7rem] text-navy">Nuestra conexión global</h2>
+          <div>
+            <p className="text-muted">
+              Hacemos parte del movimiento de Asociaciones de Naciones Unidas:
+              organizaciones de la sociedad civil que acercan el trabajo y los
+              propósitos de la ONU a la ciudadanía de cada país.
+            </p>
+            <TextLink
+              href="/sobre-una-colombia/relacion-global"
+              className="mt-5 inline-block"
+            >
+              Conoce nuestra relación global
+            </TextLink>
+          </div>
+          <Image
+            src={photos.sedeOnu.src}
+            alt={photos.sedeOnu.alt}
+            placeholder="blur"
+            sizes="(max-width: 1024px) 100vw, 22rem"
+            className="aspect-[16/9] w-full rounded-md object-cover"
+          />
+        </Container>
+      </section>
 
-            <Reveal delay={150} className="flex justify-center">
+      {/* Agenda ONU */}
+      <Row title="Colombia, ciudadanía global y agenda de la ONU" tone="navy">
+        <p className="max-w-2xl text-white/85">
+          Impulsamos el conocimiento, la participación y la acción en torno a
+          los Objetivos de Desarrollo Sostenible, para contribuir a una
+          Colombia más pacífica, inclusiva y sostenible.
+        </p>
+        <div
+          role="img"
+          aria-label="Los 17 Objetivos de Desarrollo Sostenible"
+          className="mt-6 flex h-2.5 max-w-2xl overflow-hidden rounded-sm"
+        >
+          {sdgs.map(([name, color]) => (
+            <span
+              key={name}
+              className="flex-1"
+              style={{ backgroundColor: color }}
+            />
+          ))}
+        </div>
+        <TextLink href="/agenda-onu" light className="mt-6 inline-block">
+          Explora la agenda global
+        </TextLink>
+      </Row>
+
+      {/* Programas */}
+      <Row title="Programas estratégicos" tone="marfil">
+        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {programs.map((p) => (
+            <ProgramCard
+              key={p.slug}
+              href={`/programas/${p.slug}`}
+              title={p.title}
+              summary={p.summary}
+              photo={programPhotos[p.slug]}
+            />
+          ))}
+          <ProgramCard
+            href="/programas#iniciativas"
+            title="Iniciativas estratégicas"
+            summary="Articulamos conocimientos, organizaciones y recursos en proyectos que contribuyan al desarrollo sostenible."
+            photo={programPhotos["iniciativas-estrategicas"]}
+          />
+        </div>
+      </Row>
+
+      {/* Cómo trabajamos */}
+      <Row title="Cómo trabajamos">
+        <ul className="grid gap-x-8 gap-y-8 sm:grid-cols-2 lg:grid-cols-4">
+          {pillars.map((p, i) => (
+            <li key={p.title}>
               <svg
                 aria-hidden
-                viewBox="0 0 200 80"
-                className="h-20 w-48 rotate-90 text-azul lg:rotate-0"
+                viewBox="0 0 24 24"
                 fill="none"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="h-8 w-8 text-azulco"
               >
-                <path
-                  d="M10 28 C 70 0, 130 0, 190 28"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  className="dash-flow"
-                />
-                <path
-                  d="M190 52 C 130 80, 70 80, 10 52"
-                  stroke="#0057b8"
-                  strokeWidth="2"
-                  className="dash-flow"
-                />
-                <circle cx="10" cy="40" r="7" fill="#fbd200" />
-                <circle cx="190" cy="40" r="7" fill="#0a3a6b" />
+                {pillarIcons[i]}
               </svg>
-            </Reveal>
+              <h3 className="mt-3 font-sans text-base font-semibold text-navy">
+                {p.title}
+              </h3>
+              <p className="mt-1.5 text-sm text-muted">{p.text}</p>
+            </li>
+          ))}
+        </ul>
+      </Row>
 
-            <Reveal delay={250} className="lg:text-right">
-              <p className="font-serif text-5xl font-bold leading-[1.02] tracking-tight text-navy sm:text-6xl">
-                Llevar Colombia
-                <br />
-                <span className="italic text-azulco">al mundo</span>
-              </p>
-              <p className="mt-6 max-w-md text-lg text-muted lg:ml-auto">
-                Proyectamos las voces, experiencias, capacidades y soluciones
-                que nacen en Colombia.
-              </p>
-            </Reveal>
-          </div>
-        </Container>
-      </section>
+      {/* Actualidad */}
+      <Row title="Noticias y eventos destacados" tone="marfil">
+        <div className="grid gap-8 md:grid-cols-3">
+          {latest.map((p) => (
+            <PostCard key={p.slug} post={p} />
+          ))}
+        </div>
+        <TextLink href="/actualidad" className="mt-8 inline-block">
+          Ver toda la actualidad
+        </TextLink>
+      </Row>
 
-      {/* ——— Cómo trabajamos ——— */}
-      <section className="py-24 sm:py-32">
-        <Container>
-          <SectionHeading
-            eyebrow="Cómo trabajamos"
-            title="Cuatro pilares que convierten conexiones en acción"
-          />
-          <ol className="stagger mt-14 border-t border-navy/15">
-            {pillars.map((p, i) => (
-              <li key={p.title}>
-                <Reveal className="group grid gap-4 border-b border-navy/15 py-9 hover:bg-white md:grid-cols-[7rem_1fr_1.3fr] md:items-baseline md:gap-10 md:px-6">
-                  <span className="font-serif text-5xl font-bold text-azul/50 transition-colors duration-300 group-hover:text-amarillo">
-                    0{i + 1}
-                  </span>
-                  <h3 className="text-3xl text-navy">{p.title}</h3>
-                  <p className="text-lg text-muted">{p.text}</p>
-                </Reveal>
-              </li>
-            ))}
-          </ol>
-        </Container>
-      </section>
-
-      {/* ——— Programas ——— */}
-      <section className="bg-navy-deep py-24 text-white sm:py-32">
-        <Container>
-          <div className="flex flex-wrap items-end justify-between gap-8">
-            <SectionHeading
-              light
-              eyebrow="Programas"
-              title="Formamos ciudadanos globales"
-            />
-            <Reveal>
-              <ButtonLink href="/programas" variant="ghostLight" arrow>
-                Ver todos los programas
-              </ButtonLink>
-            </Reveal>
-          </div>
-
-          <div className="mt-14 grid gap-5 lg:grid-cols-3">
-            <Reveal className="lg:col-span-2">
-              <Link
-                href={`/programas/${mun.slug}`}
-                className="bg-deep grain group relative flex h-full min-h-[26rem] flex-col justify-between overflow-hidden rounded-[2rem] border border-white/10 p-8 sm:p-12"
-              >
-                <Arcs className="-bottom-40 -right-32 h-[38rem] w-[38rem] text-azul/40 transition-transform duration-700 group-hover:scale-110" />
-                <div className="relative flex items-start justify-between gap-6">
-                  <span className="rounded-full border border-white/25 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.2em] text-white/80">
-                    Programa insignia
-                  </span>
-                  <span className="flex h-12 w-12 items-center justify-center rounded-full bg-amarillo text-navy-deep transition-transform duration-300 group-hover:rotate-[-45deg]">
-                    <ArrowIcon className="h-5 w-5" />
-                  </span>
-                </div>
-                <div className="relative">
-                  <h3 className="max-w-xl text-4xl sm:text-6xl">{mun.title}</h3>
-                  <p className="mt-5 max-w-xl text-lg text-white/75">
-                    {mun.summary}
-                  </p>
-                  <ul className="mt-7 flex flex-wrap gap-2">
-                    {mun.skills?.map((s) => (
-                      <li
-                        key={s}
-                        className="rounded-full bg-white/10 px-4 py-1.5 text-sm font-medium backdrop-blur"
-                      >
-                        {s}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </Link>
-            </Reveal>
-
-            <Reveal delay={120}>
-              <Link
-                href={`/programas/${youth.slug}`}
-                className="group relative flex h-full min-h-[26rem] flex-col justify-between overflow-hidden rounded-[2rem] bg-azul p-8 text-navy-deep sm:p-10"
-              >
-                <div className="flex items-start justify-between gap-6">
-                  <span className="rounded-full border border-navy-deep/25 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.2em]">
-                    Programa
-                  </span>
-                  <span className="flex h-12 w-12 items-center justify-center rounded-full bg-navy-deep text-white transition-transform duration-300 group-hover:rotate-[-45deg]">
-                    <ArrowIcon className="h-5 w-5" />
-                  </span>
-                </div>
-                <div>
-                  <h3 className="text-4xl sm:text-5xl">{youth.title}</h3>
-                  <p className="mt-5 text-lg text-navy-deep/80">
-                    {youth.summary}
-                  </p>
-                </div>
-              </Link>
-            </Reveal>
-
-            <Reveal className="lg:col-span-3">
-              <Link
-                href="/contacto?asunto=alianzas"
-                className="group flex flex-col justify-between gap-6 rounded-[2rem] bg-amarillo p-8 text-navy-deep sm:flex-row sm:items-center sm:p-10"
-              >
-                <div>
-                  <p className="text-xs font-semibold uppercase tracking-[0.2em]">
-                    Iniciativas y alianzas
-                  </p>
-                  <p className="mt-3 max-w-3xl font-serif text-3xl font-bold leading-tight sm:text-4xl">
-                    ¿Tu organización tiene una idea o una necesidad?
-                    Construyámosla juntos.
-                  </p>
-                </div>
-                <span className="inline-flex shrink-0 items-center gap-3 text-sm font-semibold">
-                  Conversemos
-                  <span className="flex h-12 w-12 items-center justify-center rounded-full bg-navy-deep text-white transition-transform duration-300 group-hover:translate-x-1">
-                    <ArrowIcon className="h-5 w-5" />
-                  </span>
-                </span>
-              </Link>
-            </Reveal>
-          </div>
-        </Container>
-      </section>
-
-      {/* ——— Historia ——— */}
-      <section className="overflow-hidden py-24 sm:py-32">
-        <Container>
-          <div className="flex flex-wrap items-end justify-between gap-8">
-            <SectionHeading
-              eyebrow="Nuestra historia"
-              title="Desde 2008 creando puentes"
-              intro="Educación, liderazgo juvenil, Modelos de Naciones Unidas, acción social, alianzas y representación internacional."
-            />
-            <Reveal>
-              <ButtonLink href="/sobre-una-colombia" variant="secondary" arrow>
-                Conoce la organización
-              </ButtonLink>
-            </Reveal>
-          </div>
-
-          <ol className="stagger relative mt-16 grid gap-12 md:grid-cols-3 md:gap-8">
-            <span
-              aria-hidden
-              className="absolute left-0 right-0 top-[5.4rem] hidden h-px bg-navy/20 md:block"
-            />
-            {timeline.map((t) => (
-              <li key={t.year}>
-                <Reveal>
-                  <p className="font-serif text-7xl font-bold leading-none tracking-tighter text-navy sm:text-8xl md:text-7xl lg:text-8xl">
-                    {t.year}
-                  </p>
-                  <span
-                    aria-hidden
-                    className="relative mt-5 hidden h-4 w-4 rounded-full border-4 border-marfil bg-azulco md:block"
-                  />
-                  <p className="mt-5 max-w-xs text-lg text-muted">{t.text}</p>
-                </Reveal>
-              </li>
-            ))}
-          </ol>
-        </Container>
-      </section>
-
-      {/* ——— Agenda 2030 ——— */}
-      <section className="border-y border-line bg-white py-24 sm:py-32">
-        <Container>
-          <div className="flex flex-wrap items-end justify-between gap-8">
-            <SectionHeading
-              eyebrow="Agenda ONU"
-              title="Una agenda común: 17 objetivos"
-              intro="Acercamos los Objetivos de Desarrollo Sostenible a la ciudadanía para entender cómo lo global toca lo local."
-            />
-            <Reveal>
-              <ButtonLink href="/agenda-onu" variant="secondary" arrow>
-                Explora la agenda
-              </ButtonLink>
-            </Reveal>
-          </div>
-          <Reveal className="mt-14">
-            <ol className="grid grid-cols-6 gap-1.5 sm:grid-cols-9 lg:grid-cols-[repeat(17,minmax(0,1fr))] lg:gap-2">
-              {sdgs.map(([name, color], i) => (
-                <li key={name}>
-                  <Link
-                    href="/agenda-onu#ods"
-                    title={`ODS ${i + 1}: ${name}`}
-                    className="flex aspect-square items-center justify-center rounded-lg font-serif text-lg font-bold text-white transition-transform duration-300 hover:-translate-y-2 hover:scale-110 sm:rounded-xl sm:text-xl"
-                    style={{ backgroundColor: color }}
-                  >
-                    <span aria-hidden>{i + 1}</span>
-                    <span className="sr-only">
-                      ODS {i + 1}: {name}
-                    </span>
-                  </Link>
-                </li>
-              ))}
-            </ol>
-          </Reveal>
-        </Container>
-      </section>
-
-      {/* ——— ¿Quién eres? ——— */}
-      <section className="py-24 sm:py-32">
-        <Container>
-          <SectionHeading
-            eyebrow="Participa"
-            title="Hay un lugar para ti"
-            intro="Conectar a Colombia con el mundo es una tarea colectiva. Elige por dónde empezar."
-          />
-          <ul className="stagger mt-14 grid gap-4 sm:grid-cols-2">
-            {audiences.map((a) => (
-              <li key={a.who}>
-                <Reveal className="h-full">
-                  <Link
-                    href={`/contacto?asunto=${a.subject}`}
-                    className="group flex h-full items-center justify-between gap-6 rounded-3xl border border-line bg-white p-7 transition-colors duration-300 hover:border-navy hover:bg-navy hover:text-white sm:p-9"
-                  >
-                    <span>
-                      <span className="block font-serif text-2xl font-bold text-navy transition-colors duration-300 group-hover:text-white sm:text-3xl">
-                        {a.who}
-                      </span>
-                      <span className="mt-2 block text-muted transition-colors duration-300 group-hover:text-white/75">
-                        {a.what}
-                      </span>
-                    </span>
-                    <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-azul-soft text-navy transition-all duration-300 group-hover:translate-x-1 group-hover:bg-amarillo">
-                      <ArrowIcon className="h-5 w-5" />
-                    </span>
-                  </Link>
-                </Reveal>
-              </li>
-            ))}
-          </ul>
-        </Container>
-      </section>
-
-      {/* ——— Actualidad ——— */}
-      <section className="border-t border-line bg-white py-24 sm:py-32">
-        <Container>
-          <div className="flex flex-wrap items-end justify-between gap-8">
-            <SectionHeading eyebrow="Actualidad" title="Noticias y eventos" />
-            <Reveal>
-              <ButtonLink href="/actualidad" variant="secondary" arrow>
-                Ver toda la actualidad
-              </ButtonLink>
-            </Reveal>
-          </div>
-          <div className="stagger mt-14 grid gap-5 md:grid-cols-3">
-            {latest.map((p) => (
-              <Reveal key={p.slug} className="h-full">
-                <PostCard post={p} />
-              </Reveal>
-            ))}
-          </div>
-        </Container>
-      </section>
-
-      {/* ——— Cierre ——— */}
-      <section className="bg-deep grain relative overflow-hidden text-white">
-        <Arcs className="-left-40 -top-40 h-[44rem] w-[44rem] -scale-x-100 text-azul/30" />
-        <Container className="relative py-28 sm:py-40">
-          <Reveal>
-            <p className="max-w-5xl font-serif text-5xl font-bold leading-[1.02] tracking-tight sm:text-7xl">
-              Traer el mundo a Colombia.{" "}
-              <span className="italic text-amarillo">
-                Llevar Colombia al mundo.
-              </span>
+      {/* Participa */}
+      <section className="relative isolate overflow-hidden bg-navy-deep text-white">
+        <Image
+          src={photos.cocoraPanorama.src}
+          alt=""
+          placeholder="blur"
+          fill
+          sizes="100vw"
+          className="-z-20 object-cover"
+        />
+        <div
+          aria-hidden
+          className="absolute inset-0 -z-10 bg-navy-deep/60 md:bg-[linear-gradient(90deg,rgba(6,33,61,0.92)_0%,rgba(6,33,61,0.7)_50%,rgba(6,33,61,0.35)_100%)]"
+        />
+        <Container className="flex flex-col items-start gap-6 py-16 md:flex-row md:items-center md:justify-between">
+          <div className="max-w-xl">
+            <h2 className="text-3xl sm:text-4xl">Haz parte de UNA Colombia</h2>
+            <p className="mt-3 text-white/90">
+              Participa, colabora y suma tu voz para conectar a Colombia con
+              nuevas oportunidades.
             </p>
-            <Tricolor className="mt-10 w-48" />
-            <div className="mt-10 flex flex-wrap gap-3">
-              <ButtonLink href="/participa" variant="yellow" arrow>
-                Súmate
-              </ButtonLink>
-              <ButtonLink
-                href="/sobre-una-colombia/relacion-global"
-                variant="ghostLight"
-              >
-                Conoce la red global
-              </ButtonLink>
-            </div>
-          </Reveal>
+          </div>
+          <ButtonLink href="/participa" variant="light" className="shrink-0">
+            Conoce cómo participar
+          </ButtonLink>
         </Container>
       </section>
     </>

@@ -1,24 +1,20 @@
 import Link from "next/link";
 import { aboutNav, independenceNotice, nav, site } from "@/lib/site";
-import { Container, Tricolor, Wordmark } from "./ui";
+import { Container, Wordmark } from "./ui";
 
 export function Footer() {
   const whatsappHref = site.whatsapp ? `https://wa.me/${site.whatsapp}` : null;
 
   return (
-    <footer className="relative overflow-hidden bg-navy-deep text-white">
-      <Container className="grid gap-12 pb-10 pt-20 md:grid-cols-[1.6fr_1fr_1fr_1fr]">
+    <footer className="bg-navy-deep text-white">
+      <Container className="grid gap-10 py-14 sm:grid-cols-2 lg:grid-cols-[1.5fr_1fr_1fr_1fr]">
         <div>
           <Link href="/" aria-label="UNA Colombia, ir al inicio">
             <Wordmark light />
           </Link>
-          <p className="mt-5 max-w-xs text-sm text-white/65">{site.legalName}</p>
-          <p className="mt-8 max-w-sm font-serif text-2xl italic leading-snug text-white/90">
-            Traer el mundo a Colombia.
-            <br />
-            Llevar Colombia al mundo.
+          <p className="mt-3 max-w-xs text-sm text-white/70">
+            {site.description}
           </p>
-          <Tricolor className="mt-6 w-24" />
         </div>
 
         <FooterCol title="Organización" items={aboutNav} />
@@ -28,12 +24,12 @@ export function Footer() {
         />
 
         <div>
-          <h2 className="font-sans text-xs font-semibold uppercase tracking-[0.24em] text-azul">
+          <h2 className="font-sans text-sm font-semibold text-white">
             Contacto
           </h2>
-          <ul className="mt-5 space-y-3 text-sm">
+          <ul className="mt-4 space-y-2.5 text-sm">
             <li>
-              <Link href="/contacto" className="text-white/80 hover:text-amarillo">
+              <Link href="/contacto" className="text-white/75 hover:text-white">
                 Escríbenos
               </Link>
             </li>
@@ -41,7 +37,7 @@ export function Footer() {
               <li>
                 <a
                   href={`mailto:${site.contactEmail}`}
-                  className="text-white/80 hover:text-amarillo"
+                  className="text-white/75 hover:text-white"
                 >
                   {site.contactEmail}
                 </a>
@@ -53,7 +49,7 @@ export function Footer() {
                   href={whatsappHref}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-white/80 hover:text-amarillo"
+                  className="text-white/75 hover:text-white"
                 >
                   WhatsApp
                 </a>
@@ -65,7 +61,7 @@ export function Footer() {
                   href={s.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-white/80 hover:text-amarillo"
+                  className="text-white/75 hover:text-white"
                 >
                   {s.label}
                 </a>
@@ -75,22 +71,15 @@ export function Footer() {
         </div>
       </Container>
 
-      {/* Marca gigante decorativa */}
-      <div
-        aria-hidden
-        className="pointer-events-none select-none overflow-hidden px-5 sm:px-8"
-      >
-        <p className="mx-auto max-w-7xl whitespace-nowrap font-serif text-[14.5vw] font-bold leading-[0.85] tracking-tighter text-white/[0.06] 2xl:text-[13.5rem]">
-          UNA Colombia
-        </p>
-      </div>
-
-      <div className="relative border-t border-white/10">
-        <Container className="flex flex-col gap-4 py-6 text-xs text-white/60 md:flex-row md:items-start md:justify-between">
+      <div className="border-t border-white/15">
+        <Container className="flex flex-col gap-4 py-6 text-xs text-white/65 md:flex-row md:items-start md:justify-between">
           <p className="max-w-2xl">{independenceNotice}</p>
           <div className="flex shrink-0 flex-wrap gap-x-5 gap-y-2">
             <Link href="/privacidad" className="hover:text-white">
               Tratamiento de datos
+            </Link>
+            <Link href="/creditos" className="hover:text-white">
+              Créditos de imágenes
             </Link>
             <span>© UNA Colombia</span>
           </div>
@@ -109,13 +98,11 @@ function FooterCol({
 }) {
   return (
     <div>
-      <h2 className="font-sans text-xs font-semibold uppercase tracking-[0.24em] text-azul">
-        {title}
-      </h2>
-      <ul className="mt-5 space-y-3 text-sm">
+      <h2 className="font-sans text-sm font-semibold text-white">{title}</h2>
+      <ul className="mt-4 space-y-2.5 text-sm">
         {items.map((i) => (
           <li key={i.href}>
-            <Link href={i.href} className="text-white/80 hover:text-amarillo">
+            <Link href={i.href} className="text-white/75 hover:text-white">
               {i.label}
             </Link>
           </li>

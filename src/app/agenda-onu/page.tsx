@@ -42,7 +42,7 @@ export default function Page() {
         intro="Las decisiones y los desafíos globales también tienen impacto en Colombia. Acercar la agenda de las Naciones Unidas a la ciudadanía ayuda a comprenderlos y a contribuir a su transformación."
       />
 
-      <section className="py-24">
+      <section className="py-16">
         <Container className="grid gap-12 lg:grid-cols-[1.2fr_1fr]">
           <div>
             <SectionHeading
@@ -67,10 +67,10 @@ export default function Page() {
               rel="noopener noreferrer"
               className="mt-6 inline-block text-sm font-semibold text-azulco hover:underline"
             >
-              Más información en un.org →
+              Más información en un.org
             </a>
           </div>
-          <div className="rounded-2xl bg-navy p-8 text-white">
+          <div className="rounded-lg bg-navy p-8 text-white">
             <h2 className="text-2xl">Ciudadanía global</h2>
             <p className="mt-4 text-white/85">
               Ser ciudadano global es reconocer que lo que ocurre en el mundo
@@ -82,7 +82,7 @@ export default function Page() {
         </Container>
       </section>
 
-      <section className="border-y border-line bg-white py-24">
+      <section className="border-y border-line bg-white py-16">
         <Container>
           <SectionHeading
             eyebrow="Agenda 2030"
@@ -96,7 +96,7 @@ export default function Page() {
                   href={`https://www.un.org/sustainabledevelopment/es/objetivos-de-desarrollo-sostenible/`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-4 rounded-xl border border-line bg-marfil p-3 transition-colors hover:bg-white"
+                  className="flex items-center gap-4 rounded-md border border-line bg-marfil p-3 transition-colors hover:bg-white"
                 >
                   <span
                     className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg font-serif text-lg font-bold text-white"
@@ -112,7 +112,7 @@ export default function Page() {
         </Container>
       </section>
 
-      <section className="py-24">
+      <section className="py-16">
         <Container>
           <SectionHeading
             eyebrow="Temas"

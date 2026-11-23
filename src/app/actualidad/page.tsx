@@ -34,7 +34,7 @@ export default async function Page() {
         intro="Conoce las novedades, actividades y acontecimientos relacionados con UNA Colombia y los temas de nuestra agenda."
       />
 
-      <Container className="space-y-20 py-24">
+      <Container className="space-y-20 py-16">
         {hasExamples && (
           <Pendiente>
             Las publicaciones marcadas como «Ejemplo» son de relleno y deben
@@ -51,7 +51,7 @@ export default async function Page() {
               ))}
             </div>
           ) : (
-            <p className="mt-8 rounded-2xl border border-line bg-white p-7 text-muted">
+            <p className="mt-8 rounded-lg border border-line bg-white p-7 text-muted">
               No hay eventos programados por ahora.
             </p>
           )}
@@ -66,7 +66,7 @@ export default async function Page() {
               ))}
             </div>
           ) : (
-            <p className="mt-8 rounded-2xl border border-line bg-white p-7 text-muted">
+            <p className="mt-8 rounded-lg border border-line bg-white p-7 text-muted">
               Aún no hay publicaciones.
             </p>
           )}

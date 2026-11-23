@@ -5,7 +5,7 @@ import { useState } from "react";
 import { contactSubjects, site } from "@/lib/site";
 
 const field =
-  "mt-2 w-full rounded-xl border border-line bg-white px-4 py-3 text-base text-ink placeholder:text-muted/60 focus:border-azulco";
+  "mt-2 w-full rounded-md border border-line bg-white px-4 py-3 text-base text-ink placeholder:text-muted/60 focus:border-azulco";
 
 export function ContactForm({ initialSubject }: { initialSubject: string }) {
   const [sent, setSent] = useState(false);
@@ -100,7 +100,7 @@ export function ContactForm({ initialSubject }: { initialSubject: string }) {
       {!enabled && (
         <p
           role="status"
-          className="rounded-xl border border-dashed border-amber-500/70 bg-amber-50 px-4 py-3 text-sm text-amber-900"
+          className="rounded-md border border-dashed border-amber-500/70 bg-amber-50 px-4 py-3 text-sm text-amber-900"
         >
           <strong className="font-semibold">Formulario sin conectar.</strong>{" "}
           Falta definir el correo institucional que recibirá los mensajes
@@ -111,9 +111,9 @@ export function ContactForm({ initialSubject }: { initialSubject: string }) {
       <button
         type="submit"
         disabled={!enabled}
-        className="inline-flex items-center gap-2 rounded-full bg-navy px-7 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-navy-deep disabled:cursor-not-allowed disabled:opacity-50"
+        className="inline-flex items-center rounded-md bg-navy px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-navy-deep disabled:cursor-not-allowed disabled:opacity-50"
       >
-        Enviar mensaje <span aria-hidden>→</span>
+        Enviar mensaje
       </button>
 
       {sent && (

@@ -29,7 +29,7 @@ export default function Page() {
       />
       <SubNav items={aboutNav} current="/sobre-una-colombia/relacion-global" />
 
-      <section className="py-24">
+      <section className="py-16">
         <Container className="grid gap-12 lg:grid-cols-[1.4fr_1fr]">
           <div>
             <SectionHeading
@@ -49,8 +49,8 @@ export default function Page() {
               </p>
             </div>
           </div>
-          <aside className="self-start rounded-2xl border-l-4 border-azulco bg-white p-7">
-            <h2 className="font-sans text-xs font-semibold uppercase tracking-[0.2em] text-azulco">
+          <aside className="self-start rounded-lg border-l-4 border-azulco bg-white p-7">
+            <h2 className="font-sans text-sm font-semibold text-navy">
               Para evitar confusiones
             </h2>
             <p className="mt-3 text-ink">{independenceNotice}</p>
@@ -70,7 +70,7 @@ export default function Page() {
         </Container>
       </section>
 
-      <section className="border-y border-line bg-white py-24">
+      <section className="border-y border-line bg-white py-16">
         <Container className="grid gap-5 md:grid-cols-2">
           <Card className="bg-marfil">
             <h2 className="text-2xl text-navy">¿Qué es WFUNA?</h2>
@@ -86,7 +86,7 @@ export default function Page() {
               rel="noopener noreferrer"
               className="mt-5 inline-block text-sm font-semibold text-azulco hover:underline"
             >
-              Visitar wfuna.org →
+              Visitar wfuna.org
             </a>
           </Card>
           <Card className="bg-marfil">
