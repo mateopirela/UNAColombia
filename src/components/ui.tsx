@@ -1,5 +1,8 @@
+import Image from "next/image";
 import Link from "next/link";
 import type { ReactNode } from "react";
+import logoAzul from "@/assets/logo/logo-azul.png";
+import logoBlanco from "@/assets/logo/logo-blanco.png";
 import { site } from "@/lib/site";
 
 export function Container({
@@ -27,12 +30,21 @@ export function Tricolor({ className = "" }: { className?: string }) {
   );
 }
 
+/** Logotipo oficial junto al nombre. `light` es la versión para fondo oscuro. */
 export function Wordmark({ light = false }: { light?: boolean }) {
   return (
-    <span
-      className={`font-serif text-xl font-semibold tracking-tight ${light ? "text-white" : "text-navy"}`}
-    >
-      UNA Colombia
+    <span className="flex items-center gap-3">
+      <Image
+        src={light ? logoBlanco : logoAzul}
+        alt=""
+        sizes="48px"
+        className={light ? "h-12 w-12" : "h-11 w-11"}
+      />
+      <span
+        className={`font-serif text-xl font-semibold tracking-tight ${light ? "text-white" : "text-navy"}`}
+      >
+        UNA Colombia
+      </span>
     </span>
   );
 }
