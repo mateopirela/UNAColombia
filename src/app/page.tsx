@@ -110,7 +110,7 @@ export default function Home() {
           <h2 className="text-[1.7rem]">Sobre UNA Colombia</h2>
           <div>
             <p className="text-white/85">
-              Somos una organización de la sociedad civil que conecta a
+              Somos una organización de la sociedad civil que vincula a
               Colombia con las Naciones Unidas y la comunidad internacional,
               promoviendo la cooperación, la participación y el desarrollo
               sostenible.
@@ -258,7 +258,7 @@ export default function Home() {
           <div className="max-w-xl">
             <h2 className="text-3xl sm:text-4xl">Haz parte de UNA Colombia</h2>
             <p className="mt-3 text-white/90">
-              Participa, colabora y suma tu voz para conectar a Colombia con
+              Participa, colabora y suma tu voz para acercar a Colombia a
               nuevas oportunidades.
             </p>
           </div>

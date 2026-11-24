@@ -49,7 +49,7 @@ export default function Page() {
       <PageHero
         crumbs={[{ label: "Sobre UNA Colombia" }]}
         title="Sobre UNA Colombia"
-        intro="Una organización de la sociedad civil que construye puentes entre personas, organizaciones, sectores y oportunidades."
+        intro="Una organización de la sociedad civil que articula personas, organizaciones, sectores y oportunidades."
       />
       <SubNav items={aboutNav} current="/sobre-una-colombia" />
 
@@ -60,7 +60,7 @@ export default function Page() {
             <div className="mt-6 space-y-5 text-lg text-muted">
               <p>
                 UNA Colombia es una organización de la sociedad civil que busca
-                conectar a Colombia con las Naciones Unidas y la comunidad
+                vincular a Colombia con las Naciones Unidas y la comunidad
                 internacional. Su compromiso es construir puentes entre
                 personas, organizaciones, sectores y oportunidades, para que el
                 conocimiento y las relaciones puedan convertirse en
@@ -88,7 +88,7 @@ export default function Page() {
           <div>
             <h2 className="text-3xl text-navy">Nuestra historia</h2>
             <p className="mt-6 text-lg text-muted">
-              UNA Colombia nació en 2008 para crear puentes entre Colombia y
+              UNA Colombia nació en 2008 como un nexo entre Colombia y
               las Naciones Unidas. Su trayectoria incluye educación, liderazgo
               juvenil, Modelos de Naciones Unidas, acción social, alianzas y
               representación internacional.

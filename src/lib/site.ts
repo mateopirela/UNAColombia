@@ -7,7 +7,7 @@ export const site = {
   name: "UNA Colombia",
   legalName: "Asociación Nacional de las Naciones Unidas en Colombia",
   description:
-    "Organización de la sociedad civil que conecta a Colombia con las Naciones Unidas y la comunidad internacional.",
+    "Organización de la sociedad civil que enlaza a Colombia con las Naciones Unidas y la comunidad internacional.",
   premise: "Traer el mundo a Colombia. Llevar Colombia al mundo.",
 
   /**

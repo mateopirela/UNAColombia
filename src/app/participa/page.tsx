@@ -14,7 +14,7 @@ export default function Page() {
       <PageHero
         crumbs={[{ label: "Participa" }]}
         title="Participa"
-        intro="Conectar a Colombia con el mundo también es una tarea colectiva. Generamos oportunidades para que jóvenes, ciudadanos, organizaciones e instituciones se vinculen a iniciativas que promuevan el conocimiento, la colaboración y el desarrollo sostenible."
+        intro="Acercar Colombia al mundo también es una tarea colectiva. Generamos oportunidades para que jóvenes, ciudadanos, organizaciones e instituciones se vinculen a iniciativas que promuevan el conocimiento, la colaboración y el desarrollo sostenible."
       />
 
       <section className="py-16">

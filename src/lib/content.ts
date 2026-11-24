@@ -108,7 +108,7 @@ export const programs: Program[] = [
 export const timeline = [
   {
     year: "2008",
-    text: "Nace UNA Colombia para crear puentes entre Colombia y las Naciones Unidas.",
+    text: "Nace UNA Colombia como un nexo entre Colombia y las Naciones Unidas.",
   },
   {
     year: "2009",

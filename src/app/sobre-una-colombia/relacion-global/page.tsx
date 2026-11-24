@@ -44,7 +44,7 @@ export default function Page() {
           { label: "Relación global" },
         ]}
         title="Relación global"
-        intro="UNA Colombia busca conectar al país con las Naciones Unidas y la comunidad internacional, promoviendo el intercambio de conocimientos, experiencias y oportunidades de cooperación."
+        intro="UNA Colombia busca vincular al país con las Naciones Unidas y la comunidad internacional, promoviendo el intercambio de conocimientos, experiencias y oportunidades de cooperación."
       />
       <SubNav items={aboutNav} current="/sobre-una-colombia/relacion-global" />
 
